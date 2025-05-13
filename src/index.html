@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>StarForge Touch</title>
+    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="StarForge Touch - 戦略パズルゲーム">
+    <meta name="theme-color" content="#000033">
+    <link rel="icon" href="favicon.ico">
+</head>
+<body>
+    <!-- スタート画面 -->
+    <div id="start-screen" class="screen">
+        <h1>StarForge Touch</h1>
+        <div class="subtitle">戦略パズルゲーム</div>
+        
+        <div class="menu-buttons">
+            <button id="start-game-btn" class="menu-button">ゲームスタート</button>
+            <button id="how-to-play-btn" class="menu-button">遊び方</button>
+        </div>
+        
+        <div class="game-info">
+            <p>限られた手数で、クリスタルをポータルに届けよう！</p>
+            <p>論理的思考で最適な手順を見つけ出そう</p>
+        </div>
+    </div>
+    
+    <!-- 遊び方画面 -->
+    <div id="tutorial-screen" class="screen" style="display: none;">
+        <h2>StarForge Touch の遊び方</h2>
+        
+        <div class="tutorial-content">
+            <div class="tutorial-section">
+                <h3>基本ルール</h3>
+                <p>◆ 目標: すべてのクリスタルをポータルに配置してステージクリア！</p>
+                <p>◆ 青い球（オーブ）があなたです。これを操作します</p>
+                <p>◆ 黄色い六角形（クリスタル）を収集し、ピンクの円（ポータル）に届けましょう</p>
+                <p>◆ 左上の「0/6」などの数字は現在の手数と制限手数です。手数制限内にクリアしましょう！</p>
+            </div>
+            
+            <div class="tutorial-section">
+                <h3>操作方法</h3>
+                <p>◆ 移動するには: 空いているマスをタップします。オーブが自動的に移動します。</p>
+                <p>◆ クリスタルを収集するには: オーブをクリスタルの隣に移動させてから、クリスタルをタップします。</p>
+                <p>◆ クリスタルをポータルに入れるには: クリスタル収集後、オーブをポータルの隣に移動させてから、ポータルをタップします。</p>
+                <p>◆ 1手でできること: 1マス移動、クリスタル収集、ポータルに配置、のいずれか1つです。</p>
+                <p>◆ 情報を見るには: マスを長押しすると詳しい情報が表示されます。</p>
+            </div>
+            
+            <div class="tutorial-section">
+                <h3>アイテム説明</h3>
+                <p>◆ <span class="item-orb">⚪</span> オーブ：プレイヤーキャラクター</p>
+                <p>◆ <span class="item-crystal">◆</span> クリスタル：収集して運ぶアイテム</p>
+                <p>◆ <span class="item-portal">◎</span> ポータル：クリスタルの配置先</p>
+                <p>◆ <span class="item-wall">■</span> 壁：通過できない障害物</p>
+            </div>
+        </div>
+        
+        <button id="back-to-menu-btn" class="menu-button">メニューに戻る</button>
+    </div>
+    
+    <!-- ゲーム画面 -->
+    <div id="game-screen" class="screen" style="display: none;">
+        <div id="header">
+            <div id="moves-counter">0/0</div>
+            <div id="level-info">Level: 1</div>
+        </div>
+        
+        <div id="grid-container">
+            <!-- グリッドはJavaScriptで動的に生成 -->
+        </div>
+        
+        <div id="controls">
+            <button id="reset-btn">リセット</button>
+            <button id="hint-btn">ヒント</button>
+            <button id="undo-btn">取り消し</button>
+            <button id="menu-btn">メニュー</button>
+        </div>
+        
+        <div id="status-message"></div>
+    </div>
+    
+    <!-- ゲーム基本ロジック -->
+    <script src="core/game.js"></script>
+    <script src="core/grid.js"></script>
+    <script src="core/player.js"></script>
+    
+    <!-- UI関連 -->
+    <script src="ui/touch.js"></script>
+    <script src="ui/visual.js"></script>
+    <script src="ui/sound.js"></script>
+    
+    <!-- データ管理 -->
+    <script src="data/storage.js"></script>
+    <script src="data/sync.js"></script>
+    
+    <!-- メイン初期化スクリプト -->
+    <script src="main.js"></script>
+</body>
+</html>

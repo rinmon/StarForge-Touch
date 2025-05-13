@@ -1,0 +1,295 @@
+/* StarForge Touch Styles */
+:root {
+    --grid-bg-color: #111122;
+    --grid-line-color: #334455;
+    --cell-light-color: #223344;
+    --cell-dark-color: #112233;
+    --orb-color: #66aaff;
+    --crystal-color: #ffdd66;
+    --portal-color: #ff66aa;
+    --text-color: #ffffff;
+    --button-bg: #334455;
+    --button-hover: #445566;
+    --title-color: #88ccff;
+    --menu-bg: #112244;
+    --menu-border: #3366aa;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #000033;
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+    overflow: hidden;
+}
+
+#game-container {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+#header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+#grid-container {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: var(--grid-bg-color);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* 初期は3x3 */
+    grid-gap: 1px;
+    border: 1px solid var(--grid-line-color);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.grid-cell {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: background-color 0.2s ease;
+}
+
+.grid-cell:nth-child(odd) {
+    background-color: var(--cell-dark-color);
+}
+
+.grid-cell:nth-child(even) {
+    background-color: var(--cell-light-color);
+}
+
+.grid-cell.selected {
+    box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+.orb {
+    width: 70%;
+    height: 70%;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, var(--orb-color), #1a3c5e);
+    box-shadow: 0 0 10px rgba(102, 170, 255, 0.7);
+    transition: transform 0.3s ease;
+}
+
+.crystal {
+    width: 60%;
+    height: 60%;
+    background-color: var(--crystal-color);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    box-shadow: 0 0 8px rgba(255, 221, 102, 0.7);
+}
+
+.portal {
+    width: 70%;
+    height: 70%;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, #ff66aa, #ff99cc, #ff66aa);
+    box-shadow: 0 0 12px rgba(255, 102, 170, 0.7);
+    animation: rotate 4s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.wall {
+    width: 90%;
+    height: 90%;
+    background-color: #555566;
+    border-radius: 3px;
+}
+
+.moving-wall {
+    width: 90%;
+    height: 90%;
+    background-color: #557788;
+    border-radius: 3px;
+    position: relative;
+}
+
+.moving-wall::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 7px 7px 0 7px;
+    border-color: #aaddff transparent transparent transparent;
+    bottom: 5px;
+    left: calc(50% - 7px);
+}
+
+.switch {
+    width: 60%;
+    height: 60%;
+    background-color: #88aaff;
+    border-radius: 5px;
+    border: 2px solid #5577cc;
+}
+
+#controls {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+button {
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover, button:active {
+    background-color: var(--button-hover);
+}
+
+#status-message {
+    margin-top: 15px;
+    height: 20px;
+    text-align: center;
+    color: #ffcc66;
+}
+
+/* スタート画面のスタイル */
+.screen {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#start-screen {
+    text-align: center;
+}
+
+#start-screen h1 {
+    color: var(--title-color);
+    font-size: 2.5rem;
+    margin-bottom: 5px;
+    text-shadow: 0 0 10px rgba(136, 204, 255, 0.6);
+}
+
+.subtitle {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+    width: 80%;
+    max-width: 300px;
+}
+
+.menu-button {
+    background-color: var(--menu-bg);
+    color: var(--text-color);
+    border: 2px solid var(--menu-border);
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.menu-button:hover {
+    background-color: var(--menu-border);
+    transform: scale(1.05);
+}
+
+.game-info {
+    color: var(--text-color);
+    font-size: 1rem;
+    line-height: 1.5;
+    opacity: 0.8;
+}
+
+/* 遊び方画面のスタイル */
+#tutorial-screen {
+    color: var(--text-color);
+}
+
+#tutorial-screen h2 {
+    color: var(--title-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.tutorial-content {
+    background-color: var(--menu-bg);
+    border: 1px solid var(--menu-border);
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.tutorial-section {
+    margin-bottom: 20px;
+}
+
+.tutorial-section h3 {
+    color: var(--crystal-color);
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--menu-border);
+    padding-bottom: 5px;
+}
+
+.tutorial-section p {
+    margin: 8px 0;
+    line-height: 1.4;
+}
+
+.item-orb {
+    color: var(--orb-color);
+}
+
+.item-crystal {
+    color: var(--crystal-color);
+}
+
+.item-portal {
+    color: var(--portal-color);
+}
+
+.item-wall {
+    color: #888888;
+}

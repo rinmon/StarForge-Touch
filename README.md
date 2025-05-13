@@ -1,5 +1,10 @@
 # StarForge Touch
 
+[![Version](https://img.shields.io/badge/version-0.1.0-blue.svg)](https://github.com/rinmon/StarForge-Touch/releases)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Status](https://img.shields.io/badge/status-development-orange.svg)](https://github.com/rinmon/StarForge-Touch)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/rinmon/StarForge-Touch/pulls)
+
 StarForge Touchは戦略パズルゲームで、限られた手数内でオーブを操作し、クリスタルを収集してポータルに配置するというゲームです。
 
 ## 概要
